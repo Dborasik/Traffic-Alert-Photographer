@@ -5,7 +5,7 @@ from pathlib import Path
 from flask import Flask, abort, jsonify, send_from_directory
 
 # web/ lives at the project root, one level above this package
-WEB_DIR = str(Path(__file__).parent.parent / "web")
+WEB_DIR = str(Path(__file__).parent.parent / "web" / "dist")
 
 app = Flask(__name__, static_folder=WEB_DIR, static_url_path="")
 

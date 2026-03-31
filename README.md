@@ -109,12 +109,6 @@ cd web && npm run dev
 # → open http://localhost:5173
 ```
 
-To run the poller and web server as separate processes:
-
-```bash
-python -m tap.poller   # polling only
-python -m tap.server   # web UI only
-```
 
 ---
 
