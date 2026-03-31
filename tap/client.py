@@ -39,9 +39,6 @@ def get_events(api_key: str) -> list:
     return _get("getevents", api_key)
 
 
-def get_alerts(api_key: str) -> list:
-    return _get("getalerts", api_key)
-
 
 def get_cameras(api_key: str) -> list:
     return _get("getcameras", api_key)

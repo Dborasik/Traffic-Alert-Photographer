@@ -92,12 +92,6 @@ def get_incident(incident_id):
     return jsonify(incident)
 
 
-@app.route("/api/alerts")
-def list_alerts():
-    conn = get_db()
-    rows = conn.execute("SELECT * FROM alerts ORDER BY fetched_at DESC LIMIT 200").fetchall()
-    return jsonify([dict(r) for r in rows])
-
 
 # ── Incident file serving ──────────────────────────────────────────────────────
 

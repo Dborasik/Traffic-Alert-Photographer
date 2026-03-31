@@ -84,11 +84,6 @@ def poll(cfg: dict, conn) -> None:
         log.info("Skipped %d event(s) excluded by filter", skipped)
     log.info("New/updated events processed: %d", new_count)
 
-    time.sleep(1)
-    log.info("Fetching alerts...")
-    alerts = client.get_alerts(api_key)
-    store.save_alerts(conn, alerts)
-    log.info("Alerts stored: %d", len(alerts))
 
 
 def run(cfg: dict) -> None:

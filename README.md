@@ -20,9 +20,9 @@ Currently covering **New York State** via the 511NY API, with expansion to addit
 
 ## Why TAP?
 
-Most traffic alert systems give you text. TAP gives you a picture.
+Most traffic incident systems give you text. TAP gives you a picture.
 
-The gap between "incident reported" and "incident confirmed" is where a lot of time gets wasted — by journalists, researchers, and anyone else who needs to know what's *actually* happening on the road right now. TAP closes that gap automatically, pairing every structured alert with a live camera view and an AI opinion on what it sees.
+The gap between "incident reported" and "incident confirmed" is where a lot of time gets wasted — by journalists, researchers, and anyone else who needs to know what's *actually* happening on the road right now. TAP closes that gap automatically, pairing every structured event with a live camera view and an AI opinion on what it sees.
 
 No manual camera-hunting. No stale screenshots. Just: incident in → visual record out.
 
@@ -42,7 +42,7 @@ No manual camera-hunting. No stale screenshots. Just: incident in → visual rec
 
 ## 🔍 Potential Use Cases
 
-TAP sits in a useful spot between raw alert feeds and full traffic management platforms. Some things it's well-suited for:
+TAP sits in a useful spot between raw event feeds and full traffic management platforms. Some things it's well-suited for:
 
 - **Traffic & road safety research** — build a labeled dataset pairing incident metadata with real camera imagery for computer vision or congestion studies
 - **Investigative journalism** — have visual evidence of a major incident ready before you even make the first call
