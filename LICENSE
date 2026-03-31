@@ -1,0 +1,40 @@
+Traffic Alert Photographer (TAP)
+Copyright (C) 2026 Dborasik
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+───────────────────────────────────────────────────────────────────────────────
+THIRD-PARTY DATA — 511NY / NEW YORK STATE DEPARTMENT OF TRANSPORTATION
+───────────────────────────────────────────────────────────────────────────────
+
+THIS SOFTWARE IS NOT AFFILIATED WITH, ENDORSED BY, OR IN ANY WAY CONNECTED TO
+511NY, THE NEW YORK STATE DEPARTMENT OF TRANSPORTATION (NYSDOT), OR ANY OF THEIR PARTNER AGENCIES.
+
+This software makes use of the public 511NY data API (https://www.511NY.org).
+Each user must obtain their own API key and comply with the 511NY Developer's
+Access Agreement independently.
+
+DATA DISCLAIMER (reproduced from the 511NY Developer's Access Agreement):
+
+  Information availability and data accuracy are subject to change and may
+  change as often as daily. Actual posted restrictions may be at variance with
+  and supersede the information available from this data feed. 511NY, NYSDOT
+  and their partner agencies make no warranty regarding provided data, whether
+  express or implied, and all warranties of merchantability and fitness of
+  provided data for any particular purpose are expressly disclaimed. 511NY,
+  NYSDOT and their partner agencies make no warranty that the information will
+  be provided in an uninterrupted manner or that the provided data will be free
+  of errors. Access to data is provided on an "as is" and "with all faults"
+  basis, with the entire risk as to quality and performance with the
+  Data Disseminator.

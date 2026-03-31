@@ -1,0 +1,11 @@
+# Commit Message Template
+
+Short (50 chars or less) summary of changes
+
+More detailed explanatory text, if necessary. Wrap it to 72 characters. The body of the commit message should explain what and why, not how.
+
+- Bullet points for important details or breaking changes
+- Reference issues and PRs when relevant (e.g., Fixes #123)
+
+Footer (optional):
+Co-authored-by: name <name@example.com>

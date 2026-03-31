@@ -1,0 +1,5 @@
+# CODEOWNERS file
+# This file designates reviewers for different parts of the codebase.
+# Require at least one team member to review all changes to main.
+
+*       @Dborasik
