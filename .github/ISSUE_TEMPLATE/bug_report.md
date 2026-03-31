@@ -22,7 +22,8 @@ If applicable, add screenshots to help explain your problem.
 
 **Environment (please complete the following information):**
 - OS: [e.g. Windows, MacOS]
-- Python version: [e.g. 3.10]
+- Python version: [e.g. 3.11]
+- Node.js version [if frontend-related]: [e.g. 20.x]
 - Browser [if applicable]: [e.g. chrome, safari]
 
 **Additional context**

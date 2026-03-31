@@ -77,23 +77,36 @@ new/updated event detected
 
 ## 🚀 Quick Start
 
-**Requirements:** Python 3.11+, `ffmpeg` on PATH, a [511NY developer API key](https://511ny.org/developers) *(free)*, and optionally an OpenAI API key.
+**Requirements:** Python 3.11+, Node.js 18+, `ffmpeg` on PATH, a [511NY developer API key](https://511ny.org/developers) *(free)*, and optionally an OpenAI API key.
 
 ```bash
 git clone <repo> && cd TAP
 
+# Backend
 python -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
-
 pip install -r requirements.txt
-
 cp .env.example .env
 # set NY511_API_KEY — everything else has sensible defaults
+
+# Frontend
+cd web && npm install && npm run build && cd ..
 ```
 
 ```bash
 python run.py
 # → open http://localhost:5000
+```
+
+**Dev mode** (hot-reloading frontend):
+
+```bash
+# terminal 1 — backend
+python run.py
+
+# terminal 2 — frontend dev server (proxies /api/* to Flask)
+cd web && npm run dev
+# → open http://localhost:5173
 ```
 
 To run the poller and web server as separate processes:

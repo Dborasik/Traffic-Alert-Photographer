@@ -18,6 +18,8 @@ By submitting a contribution you agree that your changes will be distributed und
 
 ## Getting started
 
+**Backend**
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate
@@ -25,20 +27,36 @@ pip install -r requirements.txt
 cp .env.example .env   # fill in your keys
 ```
 
+**Frontend**
+
+```bash
+cd web
+npm install
+npm run dev        # Vite dev server on :5173, proxies /api/* to Flask on :5000
+```
+
+For production, build the frontend before starting the app:
+
+```bash
+cd web && npm run build   # outputs to web/dist/
+python run.py             # Flask serves web/dist/ as static files
+```
+
 ## Project layout
 
-| File | Purpose |
+| Path | Purpose |
 |---|---|
 | `run.py` | Single entry point — starts poller thread + web server |
-| `main.py` | Polling loop and event processing orchestration |
-| `client_511ny.py` | 511NY REST API wrapper |
-| `geo.py` | Haversine distance / proximity filtering |
-| `capture.py` | Live camera snapshot (MJPEG, HLS/ffmpeg, still fallback) |
-| `analyzer.py` | OpenAI vision analysis with structured output |
-| `store.py` | SQLite persistence and incident file layout |
-| `web_server.py` | Flask + waitress web UI backend |
-| `web/index.html` | Single-page frontend |
-| `config.py` | Centralised config loader (env vars / .env) |
+| `tap/poller.py` | Polling loop and event processing orchestration |
+| `tap/client.py` | 511NY REST API wrapper |
+| `tap/geo.py` | Haversine distance / proximity filtering |
+| `tap/capture.py` | Live camera snapshot (MJPEG, HLS/ffmpeg, still fallback) |
+| `tap/analyzer.py` | OpenAI vision analysis with structured output |
+| `tap/store.py` | SQLite persistence and incident file layout |
+| `tap/server.py` | Flask + waitress web UI backend |
+| `tap/config.py` | Centralised config loader (env vars / .env) |
+| `web/` | React + TypeScript frontend (Vite) |
+| `web/dist/` | Production build output — served by Flask |
 
 ## Data source compliance
 
@@ -79,8 +97,8 @@ Certain files or the entire repository may have designated code owners. At least
 - Keep the codebase lightweight — no frameworks or abstractions beyond what a feature actually needs.
 - All secrets go in `.env`, never in source files.
 - Test against the live 511NY API before submitting changes to the polling or capture logic — mocks will not catch real-world edge cases.
-- The web UI is intentionally vanilla JS. Do not introduce a build step.
-- `ffmpeg` is a system dependency; document any new system-level requirements clearly.
+- The frontend is React + TypeScript, built with Vite. Keep components focused and avoid adding UI dependencies without discussion.
+- `ffmpeg` and `node` are system dependencies; document any new system-level requirements clearly.
 
 ## Submitting changes
 
