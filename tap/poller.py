@@ -58,6 +58,7 @@ def poll(cfg: dict, conn) -> None:
     active = [c for c in cameras if not c.get("Disabled") and not c.get("Blocked")]
     log.info("Cameras: %d total, %d active", len(cameras), len(active))
 
+    time.sleep(1)
     log.info("Fetching events...")
     events = client.get_events(api_key)
     log.info("Events: %d", len(events))
@@ -83,6 +84,7 @@ def poll(cfg: dict, conn) -> None:
         log.info("Skipped %d event(s) excluded by filter", skipped)
     log.info("New/updated events processed: %d", new_count)
 
+    time.sleep(1)
     log.info("Fetching alerts...")
     alerts = client.get_alerts(api_key)
     store.save_alerts(conn, alerts)
@@ -96,12 +98,34 @@ def run(cfg: dict) -> None:
     log.info("Database ready: %s", cfg["storage"]["db_path"])
 
     interval = cfg["511ny"]["poll_interval_seconds"]
+    cb_threshold = cfg["circuit_breaker"]["failure_threshold"]
+    cb_wait = cfg["circuit_breaker"]["wait_seconds"]
     log.info("Starting poll loop — interval: %ds", interval)
 
+    consecutive_failures = 0
     while True:
         try:
             poll(cfg, conn)
+            if consecutive_failures:
+                log.info("Poll succeeded — circuit breaker reset")
+            consecutive_failures = 0
         except Exception as e:
-            log.exception("Poll cycle failed: %s", e)
+            consecutive_failures += 1
+            log.exception("Poll cycle failed (%d/%d): %s", consecutive_failures, cb_threshold, e)
+            if consecutive_failures >= cb_threshold:
+                if cb_wait:
+                    log.error("Circuit breaker open — pausing %ds before retry", cb_wait)
+                    time.sleep(cb_wait)
+                    consecutive_failures = 0
+                    log.info("Circuit breaker reset — resuming poll loop")
+                else:
+                    log.error(
+                        "Circuit breaker open after %d consecutive failures — "
+                        "polling halted, restart the application to resume",
+                        consecutive_failures,
+                    )
+                    while True:
+                        time.sleep(60)
+                        log.error("Polling halted — restart the application to resume")
         log.info("Sleeping %ds...", interval)
         time.sleep(interval)

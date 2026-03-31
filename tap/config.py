@@ -44,6 +44,10 @@ def load() -> dict:
             "event_types": _list(event_types_raw),
             "severities":  _list(severities_raw),
         },
+        "circuit_breaker": {
+            "failure_threshold": int(os.environ.get("CIRCUIT_BREAKER_THRESHOLD", 3)),
+            "wait_seconds":      int(os.environ.get("CIRCUIT_BREAKER_WAIT", 300)),
+        },
         "storage": {
             "incidents_dir": _resolve(os.environ.get("STORAGE_INCIDENTS_DIR", "incidents")),
             "db_path":       _resolve(os.environ.get("STORAGE_DB_PATH", "incidents.db")),
