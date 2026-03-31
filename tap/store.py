@@ -48,13 +48,6 @@ def init_db(db_path: str) -> sqlite3.Connection:
             UNIQUE(incident_id, camera_id)
         );
 
-        CREATE TABLE IF NOT EXISTS alerts (
-            id         TEXT PRIMARY KEY,
-            message    TEXT,
-            notes      TEXT,
-            area_names TEXT,
-            fetched_at TEXT
-        );
         """
     )
     conn.commit()
@@ -182,22 +175,3 @@ def save_incident(conn: sqlite3.Connection, incidents_dir: str, event: dict, cam
     )
 
 
-def save_alerts(conn: sqlite3.Connection, alerts: list) -> None:
-    now = datetime.now(timezone.utc).isoformat()
-    for alert in alerts:
-        area_names = alert.get("AreaNames", [])
-        conn.execute(
-            """
-            INSERT INTO alerts (id, message, notes, area_names, fetched_at)
-            VALUES (?, ?, ?, ?, ?)
-            ON CONFLICT(id) DO UPDATE SET
-                message=excluded.message, notes=excluded.notes,
-                area_names=excluded.area_names, fetched_at=excluded.fetched_at
-            """,
-            (
-                alert.get("Id", "unknown"), alert.get("Message"), alert.get("Notes"),
-                json.dumps(area_names) if isinstance(area_names, list) else area_names,
-                now,
-            ),
-        )
-    conn.commit()
